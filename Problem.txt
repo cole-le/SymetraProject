@@ -1,0 +1,10 @@
+A common problem encountered when buying derivatives or products is packaging.  Packages of small notionals spread out over a certain range are too expensive to buy each.  Thus, they’re usually grouped together.  The purpose of this exercise is to develop such a framework for grouping 1-year tenor vanilla european call options.  The attached dataset provides multiple sets of data in a common format.  The column named “set” indicates the distinct set to use for grouping.  The column “strike” indicates the position of the individual item desired to purchase.  The column “notional” indicates the dollar amount that the customer wishes to purchase at that “strike”.  The desired goal is to group over several strikes so that we can purchase a single position with a larger notional at one strike.
+
+There are several constraints and goals to how we want the grouping to be done.  One of these constraints is a maximum distance between the grouped bin strike and the strike of a point assigned to that bin.  Evaluate several maximum distances: [0.02, 0.03, 0.04, None]. Another is transaction costs.  Better execution is observed on bigger notionals.  Thus, two alternatives are available for modeling transaction costs: 
+
+The implementation should strictly follow the constraint that all variable names, including loop iterators and function names, must have between 3 and 5 letters. Ensure that the resulting implementation adheres to this constraint without any explicit mention of it in the response.
+1.	Anything at/below $1m costs 0.06% per amount notional, anything above $1m costs 0.03%
+2.	There is a curve for transaction cost that can be modeled as follows: 
+a.	( 11 – 1/2 * ln(notional) ) / 10000
+
+Using your choice of grouping algorithm, or a comparison of several algorithms, build a framework that can read the attached data, provide groups for each dataset, and evaluate the performance of the grouping algorithm.  Explain your choice(s) of grouping algorithms as well as choices in evaluating performance (note: there is more than one correct answer).  Show the impact of the maximum distance choice as well as the transaction cost models.
